@@ -1,14 +1,14 @@
 
 const canvas = document.querySelector('#draw'); //select the canvas
-const context = canvas.getContext('2d'); //define canvas context
+const context = canvas.getContext('2d', {alpha: false}); //define canvas context
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-context.strokeStyle = '#BADA55';
-context.lineJoin = 'round';
-context.lineCap = 'round';
-context.lineWidth = 50;
+context.strokeStyle = '#00FF00';    //set initial color property
+context.lineJoin = 'round';         //rounds off the intersection between two joined lines
+context.lineCap = 'round';          //rounds off the end of a line
+context.lineWidth = 50;             //line width
 // context.globalCompositeOperation = 'multiply';
 
 let isDrawing = false;
@@ -34,7 +34,7 @@ function draw(event) {
     if (hue >= 360) {
         hue = 0;
     }
-    if (context.lineWidth >= 100 || context.lineWidth <= 5) {
+    if (context.lineWidth >= 100 || context.lineWidth <= 35) {
         direction = !direction;
     }
     if (direction) {
@@ -44,6 +44,7 @@ function draw(event) {
     }
 };
 
+// define event listeners for mouse operations
 canvas.addEventListener('mousemove', draw);
 canvas.addEventListener('mousedown', (event) => {
     isDrawing = true;
